@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from "react";
 import { ListItem } from "./Components/ListItem"
 import { Loading } from "./Components/Loading"
+import { fetchPut } from './Functions/fetchPut';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
     setDataFromListItem(data);
   };
 
+  // Función auxiliar para desactivar el spinner despues de las eliminaciones, de modo tal que no aparezca cuando no hayan tareas.
   const [isLoading, setIsLoading] = useState(true);
   const passIsLoading = (value) => {
     setIsLoading(value);
@@ -51,6 +53,7 @@ function App() {
     let itemsToAdd = itemList.map((x, i) => <ListItem key={i} id={`task${i}`} value={x} list={itemList} passData={passData} passIsLoading={passIsLoading}/>);
     setListItemsHTML(itemsToAdd);
     setInputValue("");
+    fetchPut(itemList)
   }
 
 

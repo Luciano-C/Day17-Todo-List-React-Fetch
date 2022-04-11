@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import {useState} from "react";
+import { fetchPut } from "../Functions/fetchPut";
 
 
 export const ListItem = (props) => {
@@ -23,12 +24,10 @@ export const ListItem = (props) => {
     // Luego manda lista actualizada a App
     const deleteItem = (value) => {
         let updatedList = itemList.filter(x => x !== value);
-
-
-
         // Manda lista actualizada a App
         props.passData(updatedList);
-        props.passIsLoading(false)
+        props.passIsLoading(false);
+        fetchPut(updatedList);
     }
 
      
