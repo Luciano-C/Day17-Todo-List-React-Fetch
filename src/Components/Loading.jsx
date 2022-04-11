@@ -1,9 +1,10 @@
 import React from "react";
+import "../App.css"
 
 
 export const Loading = () => {
     return (
-        <div>
+        <div className="d-flex justify-content-center">
             <div className="spinner-grow text-primary" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>
@@ -20,9 +21,6 @@ export const Loading = () => {
                 <span className="visually-hidden">Loading...</span>
             </div>
             <div className="spinner-grow text-info" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>
-            <div className="spinner-grow text-light" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>
             <div className="spinner-grow text-dark" role="status">

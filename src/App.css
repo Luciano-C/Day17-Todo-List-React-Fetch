@@ -87,3 +87,8 @@ ul {
   font-weight: bold;
 }
 
+.spinner-grow {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
