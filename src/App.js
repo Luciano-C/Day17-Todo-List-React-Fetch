@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from "react";
 import { ListItem } from "./Components/ListItem"
+import { Loading } from "./Components/Loading"
 
 function App() {
 
@@ -50,7 +51,7 @@ function App() {
       <div className="paperContainer">
         <input id="inputToDo" type="text" onChange={e => setInputValue(e.target.value)} onKeyPress={e => { if (e.key === "Enter") { addItem() } }} value={inputValue} placeholder="What needs to be done?" />
         <div id="paper-1">
-          <ul>{listItemsHTML.length > 0 ? listItemsHTML : "No tasks, add a task."}</ul>
+          <ul>{listItemsHTML.length > 0 ? listItemsHTML : <Loading/>}</ul>
           <p id='itemsLeft'>{itemList.length} items left</p>
         </div>
         <div id="paper-2"></div>
