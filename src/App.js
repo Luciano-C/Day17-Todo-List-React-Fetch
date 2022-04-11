@@ -8,9 +8,10 @@ function App() {
   const [itemList, setItemList] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [listItemsHTML, setListItemsHTML] = useState([]);
+  
 
   
-  const getData = async () => {
+  const getData = () => {
     fetch("https://assets.breatheco.de/apis/fake/todos/user/luckybollo")
     .then(response => response.json())
     .then(result => setDataFromListItem(result.map(x => x.label)))
@@ -19,6 +20,9 @@ function App() {
 
   useEffect(() => {
    getData();
+   if (dataFromListItem > 0) {
+    setIsLoading(false);
+   }
   }, []);
 
   // Función auxiliar para que el ListItem pueda pasar la lista actualizada a App
@@ -27,18 +31,24 @@ function App() {
     setDataFromListItem(data);
   };
 
+  const [isLoading, setIsLoading] = useState(true);
+  const passIsLoading = (value) => {
+    setIsLoading(value);
+  }
+
 
   // Use effect que re-renderiza cuando la lista cambia.
   useEffect(() => {
     setItemList(dataFromListItem);
-    setListItemsHTML(dataFromListItem.map((x, i) => <ListItem key={i} id={`task${i}`} value={x} list={itemList} passData={passData} />))
+    setListItemsHTML(dataFromListItem.map((x, i) => <ListItem key={i} id={`task${i}`} value={x} list={itemList} passData={passData} passIsLoading={passIsLoading} />));
+    
   }, [dataFromListItem, itemList])
 
 
   // Función para añadir item en el input
   const addItem = () => {
     setItemList(itemList.push(inputValue));
-    let itemsToAdd = itemList.map((x, i) => <ListItem key={i} id={`task${i}`} value={x} list={itemList} passData={passData} />);
+    let itemsToAdd = itemList.map((x, i) => <ListItem key={i} id={`task${i}`} value={x} list={itemList} passData={passData} passIsLoading={passIsLoading}/>);
     setListItemsHTML(itemsToAdd);
     setInputValue("");
   }
@@ -51,7 +61,7 @@ function App() {
       <div className="paperContainer">
         <input id="inputToDo" type="text" onChange={e => setInputValue(e.target.value)} onKeyPress={e => { if (e.key === "Enter") { addItem() } }} value={inputValue} placeholder="What needs to be done?" />
         <div id="paper-1">
-          <ul>{listItemsHTML.length > 0 ? listItemsHTML : <Loading/>}</ul>
+          <ul>{listItemsHTML.length > 0 ? listItemsHTML : <Loading isLoading={isLoading}/>}</ul>
           <p id='itemsLeft'>{itemList.length} items left</p>
         </div>
         <div id="paper-2"></div>

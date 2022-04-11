@@ -23,8 +23,12 @@ export const ListItem = (props) => {
     // Luego manda lista actualizada a App
     const deleteItem = (value) => {
         let updatedList = itemList.filter(x => x !== value);
+
+
+
         // Manda lista actualizada a App
         props.passData(updatedList);
+        props.passIsLoading(false)
     }
 
      
