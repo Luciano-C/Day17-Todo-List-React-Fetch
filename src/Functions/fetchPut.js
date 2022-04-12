@@ -1,4 +1,6 @@
 export const fetchPut = (item_list) => {
+    
+    // Se añade condicional, porque la API no admite listas vacías.
     if (item_list.length > 0) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");

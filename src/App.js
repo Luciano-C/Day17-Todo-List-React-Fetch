@@ -53,6 +53,8 @@ function App() {
     let itemsToAdd = itemList.map((x, i) => <ListItem key={i} id={`task${i}`} value={x} list={itemList} passData={passData} passIsLoading={passIsLoading}/>);
     setListItemsHTML(itemsToAdd);
     setInputValue("");
+    
+    // Se añade función que hace el fetch PUT
     fetchPut(itemList)
   }
 

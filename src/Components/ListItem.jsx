@@ -27,6 +27,7 @@ export const ListItem = (props) => {
         // Manda lista actualizada a App
         props.passData(updatedList);
         props.passIsLoading(false);
+        // Se añade función que hace fetch PUT. 
         fetchPut(updatedList);
     }
 
