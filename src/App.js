@@ -43,7 +43,6 @@ function App() {
   useEffect(() => {
     setItemList(dataFromListItem);
     setListItemsHTML(dataFromListItem.map((x, i) => <ListItem key={i} id={`task${i}`} value={x} list={itemList} passData={passData} passIsLoading={passIsLoading} />));
-    
   }, [dataFromListItem, itemList])
 
 
@@ -55,8 +54,8 @@ function App() {
     setInputValue("");
     
     // Se añade función que hace el fetch PUT
-    fetchPut(itemList)
-  }
+    fetchPut(itemList);
+  };
 
 
 
