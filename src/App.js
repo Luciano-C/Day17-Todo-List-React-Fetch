@@ -21,10 +21,16 @@ function App() {
 
   useEffect(() => {
    getData();
-   if (dataFromListItem > 0) {
-    setIsLoading(false);
-   }
+   setIsLoading(false)
   }, []);
+
+  // Fetch put incluye una "dummy task" porque la api tiene como restricción no estar vacía 
+  // Se añade useEffect permanente para borrar "dummy task" cuando esta aparezca en los items a mostrar
+  useEffect(() => {
+    if(dataFromListItem.includes("thisIsADummyTaskSoApiIsNotEmpty")) {
+      setDataFromListItem(dataFromListItem.filter(x => x !== "thisIsADummyTaskSoApiIsNotEmpty"))
+    }
+  })
 
   // Función auxiliar para que el ListItem pueda pasar la lista actualizada a App
   const [dataFromListItem, setDataFromListItem] = useState([]);
